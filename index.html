@@ -1158,73 +1158,134 @@
   </div>
 </section>
 
-<!-- SOCIAL PROOF -->
+<!-- SOCIAL PROOF - LOGO BANNER -->
 <section class="proof">
   <div class="container">
-    <div class="proof-intro">
-      <div>
-        <div class="section-label">Why It Works</div>
-        <h2 class="section-title">Health system partnerships aren't sold. They're earned.</h2>
-        <p class="section-desc">The most successful healthcare startup-to-health system partnerships share a common thread: sustained relationship investment long before any proposal was ever sent. Inkwell is built on this reality.</p>
+    <div class="section-label">Trusted By</div>
+    <h2 class="section-title" style="margin-bottom: 12px;">Startups already in the room.</h2>
+    <p class="section-desc" style="margin-bottom: 64px;">A growing roster of healthcare innovators trust Inkwell to open doors inside major health systems.</p>
+  </div>
+
+  <!-- SCROLLING LOGO STRIP -->
+  <div class="logo-track-wrapper">
+    <div class="logo-track">
+
+      <!-- =============================================
+           LOGO SLOT 1 — Replace src with your image
+           ============================================= -->
+      <div class="logo-slot">
+        <img src="logo1.png" alt="Client Name 1">
       </div>
-      <div class="credibility-items">
-        <div class="cred-item">
-          <div class="cred-num">$0</div>
-          <div class="cred-text">
-            <strong>Success fees on every plan</strong>
-            <p>Unlike boutique firms that charge 5–15% of deal value, Inkwell's retainer model means your interests and ours are perfectly aligned from day one.</p>
-          </div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-num">100%</div>
-          <div class="cred-text">
-            <strong>Bespoke human outreach, every time</strong>
-            <p>Zero AI-generated sequences. Every communication is personally crafted and reflective of your startup's unique value story.</p>
-          </div>
-        </div>
-        <div class="cred-item">
-          <div class="cred-num">10×</div>
-          <div class="cred-text">
-            <strong>Lower cost than traditional BD firms</strong>
-            <p>Boutique consulting firms charge $20–30K per deal closed. Inkwell's flagship plan starts at $2,800/month with no deal-based fees ever.</p>
-          </div>
-        </div>
+
+      <!-- =============================================
+           LOGO SLOT 2
+           ============================================= -->
+      <div class="logo-slot">
+        <img src="logo2.png" alt="Client Name 2">
       </div>
-    </div>
-    <div class="testimonials-grid">
-      <div class="testimonial">
-        <p class="testimonial-text">"We'd spent 18 months trying to break into our target health system through cold outreach and conference networking. Inkwell had us in the right rooms within 60 days. The difference is the sustained, relationship-driven approach — they don't just make an intro and disappear."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">S.M.</div>
-          <div>
-            <div class="author-name">Sarah M.</div>
-            <div class="author-title">CEO, Digital Health Startup (Series A)</div>
-          </div>
-        </div>
+
+      <!-- =============================================
+           LOGO SLOT 3
+           ============================================= -->
+      <div class="logo-slot">
+        <img src="logo3.png" alt="Client Name 3">
       </div>
-      <div class="testimonial">
-        <p class="testimonial-text">"The structural advisory engagement alone changed how we think about enterprise healthcare sales. We came out of it understanding the real procurement dynamics — not the official version on the health system's website. That intelligence is priceless."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">J.R.</div>
-          <div>
-            <div class="author-name">James R.</div>
-            <div class="author-title">VP Strategy, Health Tech Company</div>
-          </div>
-        </div>
+
+      <!-- =============================================
+           LOGO SLOT 4
+           ============================================= -->
+      <div class="logo-slot">
+        <img src="logo4.png" alt="Client Name 4">
       </div>
-      <div class="testimonial">
-        <p class="testimonial-text">"As a VC, we recommend Inkwell to portfolio companies that are ready to start enterprise conversations but aren't yet at the stage to justify a full-time BD hire. The ROI math is compelling — especially with zero success fees."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar">A.K.</div>
-          <div>
-            <div class="author-name">A. Kim</div>
-            <div class="author-title">Partner, Healthcare VC</div>
-          </div>
-        </div>
+
+      <!-- =============================================
+           LOGO SLOT 5
+           ============================================= -->
+      <div class="logo-slot">
+        <img src="logo5.png" alt="Client Name 5">
       </div>
+
+      <!-- DUPLICATE SET — keeps the scroll seamless -->
+      <div class="logo-slot"><img src="logo1.png" alt="Client Name 1"></div>
+      <div class="logo-slot"><img src="logo2.png" alt="Client Name 2"></div>
+      <div class="logo-slot"><img src="logo3.png" alt="Client Name 3"></div>
+      <div class="logo-slot"><img src="logo4.png" alt="Client Name 4"></div>
+      <div class="logo-slot"><img src="logo5.png" alt="Client Name 5"></div>
+
     </div>
   </div>
 </section>
+
+<!-- LOGO BANNER STYLES — paste inside your <style> block OR leave inline here -->
+<style>
+  .proof {
+    padding: 100px 0 0;
+    overflow: hidden;
+  }
+
+  .logo-track-wrapper {
+    width: 100%;
+    overflow: hidden;
+    padding: 48px 0;
+    background: var(--cream);
+    border-top: 1px solid var(--border);
+    /* Fade edges for a polished look */
+    -webkit-mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to right,
+      transparent 0%,
+      black 8%,
+      black 92%,
+      transparent 100%
+    );
+  }
+
+  .logo-track {
+    display: flex;
+    align-items: center;
+    gap: 64px;
+    width: max-content;
+    animation: logoScroll 30s linear infinite;
+  }
+
+  .logo-track:hover {
+    animation-play-state: paused; /* Pauses on hover — nice UX touch */
+  }
+
+  .logo-slot {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    opacity: 0.55;
+    filter: grayscale(100%);
+    transition: opacity 0.3s, filter 0.3s;
+  }
+
+  .logo-slot:hover {
+    opacity: 1;
+    filter: grayscale(0%);
+  }
+
+  .logo-slot img {
+    height: 100%;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+  }
+
+  @keyframes logoScroll {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+</style>
 
 <!-- ABOUT -->
 <section class="about" id="about">
