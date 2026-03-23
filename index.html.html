@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Inkwell Healthcare Partnerships</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0d1117;
+    --paper: #f5f0e8;
+    --cream: #ede8da;
+    --gold: #b8963e;
+    --gold-light: #d4af6a;
+    --deep-teal: #1a3a3a;
+    --teal: #2d6060;
+    --teal-light: #3d8080;
+    --muted: #7a7465;
+    --border: rgba(13,17,23,0.12);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── UTILITY ── */
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  .serif { font-family: var(--serif); }
+  .gold { color: var(--gold); }
+  .teal { color: var(--teal); }
+
+  /* ── NOISE TEXTURE OVERLAY ── */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
+
+  /* ── NAVIGATION ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 20px 0;
+    background: rgba(245,240,232,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: padding 0.3s ease;
+  }
+  nav .inner {
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links {
+    display: flex; align-items: center; gap: 36px;
+    list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-cta {
+    background: var(--deep-teal);
+    color: var(--paper) !important;
+    padding: 10px 22px;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--teal) !important; }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 120px 0 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; top: -20%; right: -10%;
+    width: 700px; height: 700px;
+    background: radial-gradient(circle, rgba(45,96,96,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-rule {
+    display: flex; align-items: center; gap: 16px;
+    margin-bottom: 28px;
+  }
+  .hero-rule span {
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .hero-rule::after {
+    content: '';
+    flex: 0 0 60px;
+    height: 1px;
+    background: var(--gold);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(2.8rem, 6vw, 5.2rem);
+    font-weight: 900;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    color: var(--ink);
+    max-width: 780px;
+    margin-bottom: 28px;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--teal);
+  }
+  .hero-sub {
+    font-size: 1.2rem;
+    color: var(--muted);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 48px;
+    font-weight: 400;
+  }
+  .hero-sub strong { color: var(--ink); font-weight: 600; }
+  .hero-actions {
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .btn-primary {
+    display: inline-block;
+    background: var(--deep-teal);
+    color: var(--paper);
+    padding: 16px 36px;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.25s, transform 0.2s;
+    border: none; cursor: pointer;
+  }
+  .btn-primary:hover { background: var(--teal); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--ink);
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: gap 0.2s;
+  }
+  .btn-secondary:hover { gap: 12px; }
+  .btn-secondary::after { content: '→'; font-size: 1rem; }
+  .hero-stats {
+    display: flex; gap: 48px; margin-top: 72px;
+    padding-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat {}
+  .hero-stat-num {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--teal);
+    display: block;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+  .hero-stat-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-weight: 500;
+  }
+
+  /* ── MARQUEE ── */
+  .marquee-strip {
+    background: var(--deep-teal);
+    color: var(--paper);
+    padding: 16px 0;
+    overflow: hidden;
+  }
+  .marquee-inner {
+    display: flex; gap: 0;
+    animation: marquee 28s linear infinite;
+    white-space: nowrap;
+  }
+  .marquee-inner span {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-weight: 500;
+    padding: 0 40px;
+    opacity: 0.75;
+  }
+  .marquee-inner .dot {
+    color: var(--gold);
+    opacity: 1;
+    padding: 0;
+  }
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  /* ── SECTION SHARED ── */
+  section { padding: 100px 0; }
+  .section-label {
+    font-size: 0.72rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before {
+    content: '';
+    display: block; width: 32px; height: 1px;
+    background: var(--gold);
+  }
+  h2.section-title {
+    font-family: var(--serif);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 800;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    margin-bottom: 20px;
+  }
+  .section-desc {
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  /* ── PROBLEM / SOLUTION ── */
+  .problem { background: var(--cream); }
+  .problem-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 64px;
+    align-items: start; margin-top: 64px;
+  }
+  .problem-side, .solution-side {}
+  .problem-side h3, .solution-side h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 28px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .pain-item {
+    display: flex; gap: 16px; margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .pain-icon {
+    flex: 0 0 36px; height: 36px;
+    background: rgba(184,150,62,0.1);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .pain-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
+  .pain-item strong { display: block; color: var(--ink); margin-bottom: 4px; font-size: 1rem; }
+  .solution-item {
+    display: flex; gap: 16px; margin-bottom: 24px;
+    align-items: flex-start;
+  }
+  .sol-num {
+    flex: 0 0 36px; height: 36px;
+    background: var(--deep-teal);
+    color: var(--paper);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+  }
+  .solution-item p { font-size: 0.95rem; color: var(--muted); line-height: 1.65; }
+  .solution-item strong { display: block; color: var(--ink); margin-bottom: 4px; font-size: 1rem; }
+
+  /* ── VALUE PROPS ── */
+  .values-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    margin-top: 64px;
+    border: 1px solid var(--border);
+  }
+  .value-card {
+    padding: 44px 36px;
+    background: var(--paper);
+    border-right: 1px solid var(--border);
+    transition: background 0.3s;
+    position: relative; overflow: hidden;
+  }
+  .value-card:last-child { border-right: none; }
+  .value-card::before {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0;
+    height: 2px;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.35s ease;
+  }
+  .value-card:hover { background: var(--cream); }
+  .value-card:hover::before { transform: scaleX(1); }
+  .value-icon {
+    font-size: 2rem; margin-bottom: 20px; display: block;
+  }
+  .value-card h3 {
+    font-family: var(--serif);
+    font-size: 1.3rem; font-weight: 700;
+    margin-bottom: 14px; letter-spacing: -0.01em;
+  }
+  .value-card p { font-size: 0.92rem; color: var(--muted); line-height: 1.7; }
+
+  /* ── FEATURES ── */
+  .features { background: var(--deep-teal); color: var(--paper); }
+  .features .section-label { color: var(--gold-light); }
+  .features .section-label::before { background: var(--gold-light); }
+  .features h2.section-title { color: var(--paper); }
+  .features .section-desc { color: rgba(245,240,232,0.65); }
+  .features-list {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    margin-top: 64px;
+    border: 1px solid rgba(245,240,232,0.1);
+  }
+  .feature-row {
+    display: flex; gap: 24px;
+    padding: 36px;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    border-right: 1px solid rgba(245,240,232,0.1);
+    transition: background 0.2s;
+    align-items: flex-start;
+  }
+  .feature-row:hover { background: rgba(245,240,232,0.04); }
+  .feature-row:nth-child(even) { border-right: none; }
+  .feat-num {
+    font-family: var(--serif);
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: rgba(245,240,232,0.08);
+    line-height: 1;
+    flex: 0 0 auto;
+    user-select: none;
+  }
+  .feat-content h4 {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+  .feat-content p { font-size: 0.9rem; color: rgba(245,240,232,0.6); line-height: 1.7; }
+  .feat-tag {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(184,150,62,0.2);
+    color: var(--gold-light);
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-weight: 600;
+  }
+
+  /* ── PRICING ── */
+  .pricing { background: var(--cream); }
+  .pricing-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 56px; flex-wrap: wrap; gap: 24px;
+  }
+  .pricing-note {
+    font-size: 0.85rem;
+    color: var(--muted);
+    max-width: 360px;
+    line-height: 1.65;
+    text-align: right;
+  }
+  .plans-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2px;
+    border: 1px solid var(--border);
+  }
+  .plan-card {
+    background: var(--paper);
+    padding: 36px 28px;
+    position: relative;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .plan-card:hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(13,17,23,0.1); z-index: 1; }
+  .plan-card.featured {
+    background: var(--deep-teal);
+    color: var(--paper);
+  }
+  .plan-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--deep-teal);
+    background: var(--gold);
+    padding: 4px 10px;
+    border-radius: 2px;
+    margin-bottom: 20px;
+  }
+  .plan-name {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .plan-card.featured .plan-name { color: var(--paper); }
+  .plan-price {
+    font-family: var(--serif);
+    font-size: 2.2rem;
+    font-weight: 900;
+    color: var(--teal);
+    margin: 16px 0 4px;
+    line-height: 1;
+  }
+  .plan-card.featured .plan-price { color: var(--gold-light); }
+  .plan-price span { font-size: 0.9rem; font-weight: 400; font-family: var(--sans); }
+  .plan-hours {
+    font-size: 0.82rem;
+    color: var(--muted);
+    margin-bottom: 4px;
+    font-weight: 500;
+  }
+  .plan-card.featured .plan-hours { color: rgba(245,240,232,0.6); }
+  .plan-commitment {
+    font-size: 0.78rem;
+    color: var(--muted);
+    margin-bottom: 24px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-card.featured .plan-commitment { color: rgba(245,240,232,0.5); border-color: rgba(245,240,232,0.1); }
+  .plan-features { list-style: none; flex: 1; }
+  .plan-features li {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 6px 0;
+    display: flex; gap: 8px;
+    line-height: 1.5;
+  }
+  .plan-card.featured .plan-features li { color: rgba(245,240,232,0.7); }
+  .plan-features li::before { content: '—'; color: var(--gold); flex: 0 0 auto; font-weight: 700; }
+  .plan-cta {
+    display: block;
+    margin-top: 28px;
+    padding: 12px 20px;
+    text-align: center;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+  }
+  .plan-cta-outline {
+    border: 1.5px solid var(--deep-teal);
+    color: var(--deep-teal);
+    background: transparent;
+  }
+  .plan-cta-outline:hover { background: var(--deep-teal); color: var(--paper); }
+  .plan-cta-solid {
+    background: var(--gold);
+    color: var(--deep-teal);
+    border: 1.5px solid var(--gold);
+  }
+  .plan-cta-solid:hover { background: var(--gold-light); }
+
+  /* ── SOCIAL PROOF ── */
+  .proof { background: var(--paper); }
+  .proof-intro {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start; margin-bottom: 72px;
+  }
+  .credibility-items { margin-top: 40px; }
+  .cred-item {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .cred-item:first-child { border-top: 1px solid var(--border); }
+  .cred-num {
+    font-family: var(--serif);
+    font-size: 1.8rem; font-weight: 900;
+    color: var(--gold); line-height: 1; flex: 0 0 auto;
+  }
+  .cred-text strong { display: block; font-size: 0.92rem; margin-bottom: 4px; }
+  .cred-text p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px;
+    border: 1px solid var(--border);
+  }
+  .testimonial {
+    padding: 40px 32px;
+    background: var(--paper);
+    border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .testimonial:last-child { border-right: none; }
+  .testimonial::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 5rem; line-height: 1;
+    color: rgba(184,150,62,0.15);
+    position: absolute; top: 16px; left: 24px;
+    pointer-events: none;
+  }
+  .testimonial-text {
+    font-size: 0.95rem;
+    line-height: 1.75;
+    color: var(--ink);
+    margin-bottom: 28px;
+    font-style: italic;
+    font-family: var(--serif);
+    position: relative; z-index: 1;
+  }
+  .testimonial-author { display: flex; gap: 14px; align-items: center; }
+  .author-avatar {
+    width: 44px; height: 44px;
+    background: var(--deep-teal);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--serif); font-size: 1rem;
+    color: var(--paper); font-weight: 700; flex: 0 0 auto;
+  }
+  .author-name { font-weight: 600; font-size: 0.88rem; margin-bottom: 2px; }
+  .author-title { font-size: 0.78rem; color: var(--muted); }
+
+  /* ── ABOUT ── */
+  .about { background: var(--cream); }
+  .about-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+    align-items: start;
+  }
+  .about-left {}
+  .about-right { padding-top: 8px; }
+  .about-body {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .about-body strong { color: var(--ink); }
+  .about-values { margin-top: 36px; }
+  .about-value {
+    display: flex; gap: 16px; margin-bottom: 20px;
+  }
+  .about-value-icon {
+    flex: 0 0 10px; height: 10px;
+    width: 10px;
+    background: var(--gold);
+    border-radius: 50%;
+    margin-top: 6px;
+  }
+  .about-value p { font-size: 0.92rem; color: var(--muted); line-height: 1.65; }
+  .about-value strong { color: var(--ink); }
+  .about-aside {
+    background: var(--deep-teal);
+    color: var(--paper);
+    padding: 44px;
+    border-radius: 2px;
+  }
+  .about-aside h3 {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.3;
+  }
+  .about-aside p { font-size: 0.92rem; color: rgba(245,240,232,0.7); line-height: 1.75; margin-bottom: 16px; }
+  .about-aside strong { color: var(--gold-light); }
+  .differentiator {
+    display: flex; gap: 12px; align-items: flex-start;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+  }
+  .differentiator:last-child { border-bottom: none; }
+  .diff-check { color: var(--gold-light); font-weight: 700; flex: 0 0 auto; margin-top: 1px; }
+  .differentiator p { font-size: 0.88rem; color: rgba(245,240,232,0.75); line-height: 1.6; }
+
+  /* ── FAQ ── */
+  .faq { background: var(--paper); }
+  .faq-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+    margin-top: 64px;
+    border: 1px solid var(--border);
+  }
+  .faq-item {
+    padding: 36px;
+    border-bottom: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+  .faq-item:nth-child(even) { border-right: none; }
+  .faq-item:last-child, .faq-item:nth-last-child(2) { border-bottom: none; }
+  .faq-q {
+    font-family: var(--serif);
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 14px;
+    color: var(--ink);
+    line-height: 1.4;
+  }
+  .faq-a { font-size: 0.9rem; color: var(--muted); line-height: 1.75; }
+  .faq-a strong { color: var(--teal); }
+
+  /* ── CTA BANNER ── */
+  .cta-banner {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 100px 0;
+    text-align: center;
+    position: relative; overflow: hidden;
+  }
+  .cta-banner::before {
+    content: '';
+    position: absolute; top: -50%; left: 50%; transform: translateX(-50%);
+    width: 800px; height: 800px;
+    background: radial-gradient(circle, rgba(45,96,96,0.25) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .cta-banner .section-label { justify-content: center; color: var(--gold-light); }
+  .cta-banner .section-label::before { background: var(--gold-light); }
+  .cta-banner h2 {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    max-width: 700px;
+    margin: 0 auto 24px;
+  }
+  .cta-banner h2 em { font-style: italic; color: var(--gold-light); }
+  .cta-banner p {
+    font-size: 1.1rem;
+    color: rgba(245,240,232,0.6);
+    max-width: 480px;
+    margin: 0 auto 48px;
+    line-height: 1.7;
+  }
+  .cta-options {
+    display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;
+  }
+  .cta-options .btn-primary { background: var(--gold); color: var(--ink); }
+  .cta-options .btn-primary:hover { background: var(--gold-light); }
+  .cta-options .btn-ghost {
+    display: inline-block;
+    border: 1.5px solid rgba(245,240,232,0.3);
+    color: var(--paper);
+    padding: 16px 36px;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .cta-options .btn-ghost:hover { border-color: var(--paper); background: rgba(245,240,232,0.05); }
+
+  /* ── CONTACT ── */
+  .contact { background: var(--cream); }
+  .contact-layout {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px;
+  }
+  .contact-form {
+    display: flex; flex-direction: column; gap: 18px;
+  }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-group label {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--muted);
+  }
+  .form-group input, .form-group select, .form-group textarea {
+    background: var(--paper);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    padding: 12px 16px;
+    font-family: var(--sans);
+    font-size: 0.9rem;
+    color: var(--ink);
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+  }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: var(--teal);
+  }
+  .form-group textarea { resize: vertical; min-height: 120px; }
+  .contact-info h3 {
+    font-family: var(--serif);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+  .contact-info p { font-size: 0.95rem; color: var(--muted); line-height: 1.75; margin-bottom: 36px; }
+  .contact-details { display: flex; flex-direction: column; gap: 0; }
+  .contact-detail {
+    display: flex; gap: 16px; align-items: flex-start;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-detail:first-child { border-top: 1px solid var(--border); }
+  .cd-icon {
+    flex: 0 0 36px; height: 36px;
+    background: var(--deep-teal);
+    border-radius: 2px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.9rem;
+    color: var(--paper);
+  }
+  .cd-label { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 2px; font-weight: 600; }
+  .cd-value { font-size: 0.9rem; color: var(--ink); font-weight: 500; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 0 32px;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px;
+    padding-bottom: 48px;
+    border-bottom: 1px solid rgba(245,240,232,0.1);
+    margin-bottom: 32px;
+  }
+  .footer-brand {}
+  .footer-logo {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    display: block;
+    color: var(--paper);
+    text-decoration: none;
+  }
+  .footer-logo span { color: var(--gold); }
+  .footer-brand p { font-size: 0.85rem; color: rgba(245,240,232,0.5); line-height: 1.7; max-width: 280px; }
+  .footer-col h4 {
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(245,240,232,0.4);
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col a {
+    font-size: 0.87rem;
+    color: rgba(245,240,232,0.65);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .footer-col a:hover { color: var(--paper); }
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 16px;
+  }
+  .footer-bottom p { font-size: 0.8rem; color: rgba(245,240,232,0.35); }
+  .footer-disclaimer { font-size: 0.78rem; color: rgba(245,240,232,0.3); max-width: 480px; line-height: 1.6; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .hero h1, .hero-sub, .hero-actions, .hero-stats {
+    animation: fadeUp 0.8s ease both;
+  }
+  .hero h1 { animation-delay: 0.1s; }
+  .hero-sub { animation-delay: 0.25s; }
+  .hero-actions { animation-delay: 0.4s; }
+  .hero-stats { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .problem-grid, .about-layout, .contact-layout,
+    .proof-intro { grid-template-columns: 1fr; gap: 40px; }
+    .values-grid { grid-template-columns: 1fr; }
+    .value-card { border-right: none; border-bottom: 1px solid var(--border); }
+    .features-list { grid-template-columns: 1fr; }
+    .feature-row { border-right: none !important; }
+    .testimonials-grid { grid-template-columns: 1fr; }
+    .testimonial { border-right: none !important; border-bottom: 1px solid var(--border); }
+    .plans-grid { grid-template-columns: 1fr 1fr; }
+    .faq-grid { grid-template-columns: 1fr; }
+    .faq-item { border-right: none !important; }
+    .hero-stats { flex-wrap: wrap; gap: 32px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    .nav-links { display: none; }
+    .pricing-header { flex-direction: column; align-items: flex-start; }
+    .pricing-note { text-align: left; }
+  }
+  @media (max-width: 560px) {
+    .plans-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    section { padding: 72px 0; }
+    .container { padding: 0 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAVIGATION -->
+<nav>
+  <div class="container inner">
+    <a href="#" class="nav-logo">Ink<span>well</span></a>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact" class="nav-cta">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-rule"><span>Healthcare Partnership Intelligence</span></div>
+    <h1>Your <em>unfair advantage</em> inside major health systems.</h1>
+    <p class="hero-sub">
+      Inkwell embeds your healthcare startup inside the networks that matter — delivering <strong>continuous, relationship-driven pipeline generation</strong> within major health systems at a fraction of what a VP of Partnerships would cost.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="#pricing" class="btn-secondary">See pricing</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <span class="hero-stat-num">0%</span>
+        <span class="hero-stat-label">Success Fees</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">100%</span>
+        <span class="hero-stat-label">Human Outreach</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">~$212</span>
+        <span class="hero-stat-label">Effective Hourly Rate</span>
+      </div>
+      <div class="hero-stat">
+        <span class="hero-stat-num">90-Day</span>
+        <span class="hero-stat-label">Minimum Engagement</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip" aria-hidden="true">
+  <div class="marquee-inner">
+    <span>Health System Partnerships</span><span class="dot">✦</span>
+    <span>Pipeline Generation</span><span class="dot">✦</span>
+    <span>Zero Success Fees</span><span class="dot">✦</span>
+    <span>Bespoke Human Networking</span><span class="dot">✦</span>
+    <span>Transparent Contracts</span><span class="dot">✦</span>
+    <span>Startup Growth</span><span class="dot">✦</span>
+    <span>Health System Partnerships</span><span class="dot">✦</span>
+    <span>Pipeline Generation</span><span class="dot">✦</span>
+    <span>Zero Success Fees</span><span class="dot">✦</span>
+    <span>Bespoke Human Networking</span><span class="dot">✦</span>
+    <span>Transparent Contracts</span><span class="dot">✦</span>
+    <span>Startup Growth</span><span class="dot">✦</span>
+  </div>
+</div>
+
+<!-- PROBLEM / SOLUTION -->
+<section class="problem" id="how">
+  <div class="container">
+    <div class="section-label">The Challenge</div>
+    <h2 class="section-title">Health system doors don't open<br>for outsiders.</h2>
+    <div class="problem-grid">
+      <div class="problem-side">
+        <h3>The problems startups face</h3>
+        <div class="pain-item">
+          <div class="pain-icon">🚪</div>
+          <div>
+            <strong>Access is everything — and almost impossible to get</strong>
+            <p>Health system executives are gatekept behind procurement silos, bureaucracy, and overflowing inboxes. Cold outreach gets ignored. Warm introductions take years to cultivate.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">💸</div>
+          <div>
+            <strong>Boutique consultants charge $20–30K per deal closed</strong>
+            <p>Traditional healthcare BD firms take a success fee on top of high retainers — meaning a $500K pilot could cost you $100K+ just in fees. Your investors didn't fund your consultants.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">🤖</div>
+          <div>
+            <strong>AI outreach has poisoned the well</strong>
+            <p>Mass-automated email sequences have trained health system leaders to ignore anything that doesn't feel personally crafted. Trust is now the scarcest commodity in B2B healthcare.</p>
+          </div>
+        </div>
+        <div class="pain-item">
+          <div class="pain-icon">⏱</div>
+          <div>
+            <strong>You can't afford a full-time VP of Partnerships yet</strong>
+            <p>A seasoned VP of Partnerships commands $200K–$350K in total compensation — a non-starter for most Series A and pre-Series B startups without guaranteed pipeline to justify the hire.</p>
+          </div>
+        </div>
+      </div>
+      <div class="solution-side">
+        <h3>The Inkwell solution</h3>
+        <div class="solution-item">
+          <div class="sol-num">01</div>
+          <div>
+            <strong>Continuous relationship-building inside target systems</strong>
+            <p>We maintain ongoing presence and awareness within your priority health systems — nurturing relationships across multiple stakeholders, not just one point of contact.</p>
+          </div>
+        </div>
+        <div class="solution-item">
+          <div class="sol-num">02</div>
+          <div>
+            <strong>Zero success fees — you keep 100% of every deal</strong>
+            <p>Our model is retainer-based, full stop. When Inkwell helps you close a $2M contract, you walk away with $2M. That's how partnership support should work.</p>
+          </div>
+        </div>
+        <div class="solution-item">
+          <div class="sol-num">03</div>
+          <div>
+            <strong>100% bespoke, human-to-human outreach</strong>
+            <p>Every touchpoint is crafted personally and delivered by humans who understand healthcare culture. No mass sequences. No AI-generated emails. Real relationships built on earned credibility.</p>
+          </div>
+        </div>
+        <div class="solution-item">
+          <div class="sol-num">04</div>
+          <div>
+            <strong>Fractional VP-level expertise, startup-friendly cost</strong>
+            <p>Access seasoned healthcare BD expertise starting at $2,800/month — purpose-built for early-stage companies that need traction without the headcount overhead.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUE PROPOSITIONS -->
+<section id="services">
+  <div class="container">
+    <div class="section-label">Why Inkwell</div>
+    <h2 class="section-title">Three principles that set us apart</h2>
+    <p class="section-desc">We built Inkwell around the realities of healthcare BD — where trust compounds slowly and shortcuts always backfire.</p>
+    <div class="values-grid">
+      <div class="value-card">
+        <span class="value-icon">🤝</span>
+        <h3>Relationship-First, Always</h3>
+        <p>Health system partnerships are built on trusted relationships, not transactional outreach. Inkwell invests in long-term relationship development across multiple stakeholders at your priority systems — CMIOs, CNOs, Innovation leads, and procurement.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">📋</span>
+        <h3>Radically Transparent</h3>
+        <p>Straightforward contracts. No hidden clauses, no ambiguous success fee structures, no surprise invoices. You'll know exactly what you're paying for, how we track progress, and what to expect every month of the engagement.</p>
+      </div>
+      <div class="value-card">
+        <span class="value-icon">🎯</span>
+        <h3>Built for Healthcare Startups</h3>
+        <p>We specialize exclusively in the healthcare startup-to-health system corridor. That specialization means deeper networks, better-calibrated introductions, and advisory informed by what actually works in enterprise healthcare sales cycles.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES / OFFERINGS -->
+<section class="features">
+  <div class="container">
+    <div class="section-label">What We Do</div>
+    <h2 class="section-title">A complete partnership <br>acceleration stack.</h2>
+    <p class="section-desc">From first warm introduction to signed contract, Inkwell provides the expertise, network, and strategic support your startup needs at every stage.</p>
+    <div class="features-list">
+      <div class="feature-row">
+        <span class="feat-num">01</span>
+        <div class="feat-content">
+          <h4>Pipeline Generation &amp; Lead Development</h4>
+          <p>Ongoing identification, qualification, and cultivation of health system opportunities matched to your ideal customer profile. We don't just hand you names — we build the relationship before the introduction.</p>
+          <span class="feat-tag">Core Service</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feat-num">02</span>
+        <div class="feat-content">
+          <h4>Health System Awareness Building</h4>
+          <p>Proactive positioning of your startup within innovation and clinical leadership circles inside target systems — so that when your category is discussed, your name is already in the room.</p>
+          <span class="feat-tag">Core Service</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feat-num">03</span>
+        <div class="feat-content">
+          <h4>Structural Advisory</h4>
+          <p>A comprehensive one-time project (24 hours) including interviews with health system leaders to help you understand procurement realities, contract structures, and the organizational dynamics that determine whether pilots become partnerships.</p>
+          <span class="feat-tag">Advisory</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feat-num">04</span>
+        <div class="feat-content">
+          <h4>Pitch Deck Creation</h4>
+          <p>Decks built for healthcare executives, not startup investors. We translate your technology's clinical and operational value into the language and format that resonates with health system decision-makers.</p>
+          <span class="feat-tag">Content</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feat-num">05</span>
+        <div class="feat-content">
+          <h4>Meeting Prep &amp; Facilitation</h4>
+          <p>Full-cycle meeting support: pre-meeting intelligence gathering and briefing, in-meeting facilitation by an experienced healthcare BD professional, and post-meeting debrief with next-step strategy.</p>
+          <span class="feat-tag">Ad Hoc</span>
+        </div>
+      </div>
+      <div class="feature-row">
+        <span class="feat-num">06</span>
+        <div class="feat-content">
+          <h4>Comprehensive Retainer</h4>
+          <p>Our most flexible engagement: 40 hours per month directed across any combination of Inkwell services, including all of the above. Ideal for startups in active deal-pursuit mode who need cross-functional support.</p>
+          <span class="feat-tag">All-Inclusive</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing-header">
+      <div>
+        <div class="section-label">Transparent Pricing</div>
+        <h2 class="section-title">No success fees.<br>No surprises.</h2>
+      </div>
+      <p class="pricing-note">All plans are retainer-based. You keep 100% of the value of every deal Inkwell helps you close — always.</p>
+    </div>
+    <div class="plans-grid">
+      <!-- Lead Gen -->
+      <div class="plan-card featured">
+        <div class="plan-badge">Flagship</div>
+        <div class="plan-name">Lead-Generation Plan</div>
+        <div class="plan-price">$2,800 <span>/ month</span></div>
+        <div class="plan-hours">12.5 hours / month</div>
+        <div class="plan-commitment">90-day minimum, then 30-day cancellation notice</div>
+        <ul class="plan-features">
+          <li>Continuous relationship-building within target health systems</li>
+          <li>Pipeline identification &amp; qualification</li>
+          <li>Monthly progress reporting</li>
+          <li>Warm introductions to qualified contacts</li>
+          <li>Zero success fees on deals closed</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-solid">Get Started</a>
+      </div>
+      <!-- Comprehensive -->
+      <div class="plan-card">
+        <div class="plan-name">Comprehensive Retainer</div>
+        <div class="plan-price">$8,500 <span>/ month</span></div>
+        <div class="plan-hours">40 hours / month</div>
+        <div class="plan-commitment">Volume discount · ~$212/hr effective rate</div>
+        <ul class="plan-features">
+          <li>Hours directed across any Inkwell service</li>
+          <li>Full pipeline generation + advisory</li>
+          <li>Pitch deck support included</li>
+          <li>Meeting prep &amp; facilitation</li>
+          <li>Best value for active deal pursuit</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-outline">Get Started</a>
+      </div>
+      <!-- Structural -->
+      <div class="plan-card">
+        <div class="plan-name">Structural Advisory</div>
+        <div class="plan-price">$4,800 <span>flat fee</span></div>
+        <div class="plan-hours">24-hour project</div>
+        <div class="plan-commitment">One-time engagement</div>
+        <ul class="plan-features">
+          <li>Interviews with health system leaders</li>
+          <li>Procurement &amp; contracting insights</li>
+          <li>Organizational dynamics analysis</li>
+          <li>Strategic go-to-market recommendations</li>
+          <li>Final advisory deliverable</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-outline">Get Started</a>
+      </div>
+      <!-- Pitch Deck -->
+      <div class="plan-card">
+        <div class="plan-name">Pitch Deck Creation</div>
+        <div class="plan-price">$3,000 <span>/ month</span></div>
+        <div class="plan-hours">15 hours / month</div>
+        <div class="plan-commitment">Project or month-to-month</div>
+        <ul class="plan-features">
+          <li>Decks crafted for health system executives</li>
+          <li>Clinical &amp; operational value translation</li>
+          <li>Narrative architecture &amp; design guidance</li>
+          <li>Revisions included</li>
+          <li>Stakeholder-specific versions</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-outline">Get Started</a>
+      </div>
+      <!-- Meeting Prep -->
+      <div class="plan-card">
+        <div class="plan-name">Meeting Prep &amp; Facilitation</div>
+        <div class="plan-price">$650 <span>/ meeting</span></div>
+        <div class="plan-hours">3 hours per meeting</div>
+        <div class="plan-commitment">Ad hoc basis · no commitment required</div>
+        <ul class="plan-features">
+          <li>1 hr: Pre-meeting intelligence &amp; briefing</li>
+          <li>1 hr: In-meeting facilitation</li>
+          <li>1 hr: Post-meeting debrief &amp; next steps</li>
+          <li>Stakeholder research included</li>
+          <li>Ideal for critical first meetings</li>
+        </ul>
+        <a href="#contact" class="plan-cta plan-cta-outline">Book a Meeting</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF -->
+<section class="proof">
+  <div class="container">
+    <div class="proof-intro">
+      <div>
+        <div class="section-label">Why It Works</div>
+        <h2 class="section-title">Health system partnerships aren't sold. They're earned.</h2>
+        <p class="section-desc">The most successful healthcare startup-to-health system partnerships share a common thread: sustained relationship investment long before any proposal was ever sent. Inkwell is built on this reality.</p>
+      </div>
+      <div class="credibility-items">
+        <div class="cred-item">
+          <div class="cred-num">$0</div>
+          <div class="cred-text">
+            <strong>Success fees on every plan</strong>
+            <p>Unlike boutique firms that charge 5–15% of deal value, Inkwell's retainer model means your interests and ours are perfectly aligned from day one.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-num">100%</div>
+          <div class="cred-text">
+            <strong>Bespoke human outreach, every time</strong>
+            <p>Zero AI-generated sequences. Every communication is personally crafted and reflective of your startup's unique value story.</p>
+          </div>
+        </div>
+        <div class="cred-item">
+          <div class="cred-num">10×</div>
+          <div class="cred-text">
+            <strong>Lower cost than traditional BD firms</strong>
+            <p>Boutique consulting firms charge $20–30K per deal closed. Inkwell's flagship plan starts at $2,800/month with no deal-based fees ever.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial">
+        <p class="testimonial-text">"We'd spent 18 months trying to break into our target health system through cold outreach and conference networking. Inkwell had us in the right rooms within 60 days. The difference is the sustained, relationship-driven approach — they don't just make an intro and disappear."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">S.M.</div>
+          <div>
+            <div class="author-name">Sarah M.</div>
+            <div class="author-title">CEO, Digital Health Startup (Series A)</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">"The structural advisory engagement alone changed how we think about enterprise healthcare sales. We came out of it understanding the real procurement dynamics — not the official version on the health system's website. That intelligence is priceless."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">J.R.</div>
+          <div>
+            <div class="author-name">James R.</div>
+            <div class="author-title">VP Strategy, Health Tech Company</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial">
+        <p class="testimonial-text">"As a VC, we recommend Inkwell to portfolio companies that are ready to start enterprise conversations but aren't yet at the stage to justify a full-time BD hire. The ROI math is compelling — especially with zero success fees."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A.K.</div>
+          <div>
+            <div class="author-name">A. Kim</div>
+            <div class="author-title">Partner, Healthcare VC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-layout">
+      <div class="about-left">
+        <div class="section-label">Our Story</div>
+        <h2 class="section-title">We've been on both sides of the table.</h2>
+        <p class="about-body">
+          Inkwell was founded on a simple observation: <strong>healthcare startups with transformative technology were failing to reach the health systems that needed them most</strong> — not because their products weren't ready, but because they couldn't navigate the organizational complexity and relationship dynamics of enterprise health systems.
+        </p>
+        <p class="about-body">
+          At the same time, the solutions available to them were either unaffordable (full-time BD hires), misaligned (success-fee firms incentivized to close fast, not right), or impersonal (agencies that treated healthcare like any other vertical).
+        </p>
+        <p class="about-body">
+          Inkwell exists to close that gap — bringing <strong>genuine relationship capital, deep sector expertise, and a transparent business model</strong> to the healthcare startups doing the hard work of improving patient care.
+        </p>
+        <div class="about-values">
+          <div class="about-value">
+            <div class="about-value-icon"></div>
+            <p><strong>We believe relationships are the product.</strong> Every introduction we make is backed by earned trust, not cold outreach mechanics.</p>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon"></div>
+            <p><strong>We believe alignment matters.</strong> Our retainer-only model means we succeed when you build sustainable partnerships — not when we close deals that fall apart in year two.</p>
+          </div>
+          <div class="about-value">
+            <div class="about-value-icon"></div>
+            <p><strong>We believe healthcare deserves better BD.</strong> The status quo of opaque contracts and inflated success fees doesn't serve the sector or the patients ultimately affected by these partnerships.</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-right">
+        <div class="about-aside">
+          <h3>Why Inkwell over a VP of Partnerships?</h3>
+          <p>A seasoned VP of Partnerships in healthcare costs <strong>$200K–$350K</strong> in total compensation — before benefits, equity, and onboarding time. Most early-stage startups don't have the runway or the guaranteed pipeline to justify that investment.</p>
+          <p>Inkwell delivers VP-level network access and strategic expertise at a fraction of that cost, with no equity dilution and the flexibility to scale your engagement up or down.</p>
+          <div class="differentiator">
+            <span class="diff-check">✓</span>
+            <p>No equity required. No long-term employment commitment.</p>
+          </div>
+          <div class="differentiator">
+            <span class="diff-check">✓</span>
+            <p>Start with pipeline generation. Add services as your needs grow.</p>
+          </div>
+          <div class="differentiator">
+            <span class="diff-check">✓</span>
+            <p>Transparent contracts. Cancel with 30 days' notice after the 90-day minimum.</p>
+          </div>
+          <div class="differentiator">
+            <span class="diff-check">✓</span>
+            <p>Access to healthcare networks built over years, not months.</p>
+          </div>
+          <div class="differentiator">
+            <span class="diff-check">✓</span>
+            <p>Zero success fees. 100% of every deal value stays with your company.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="section-label">Common Questions</div>
+    <h2 class="section-title">Answers to what founders ask us most.</h2>
+    <div class="faq-grid">
+      <div class="faq-item">
+        <p class="faq-q">How is Inkwell different from a traditional healthcare consulting firm?</p>
+        <p class="faq-a">Most healthcare BD firms charge success fees of 5–15% on deals closed, on top of retainer costs. On a $500K pilot contract, that's $25–75K paid to your consultant — money that should stay in your company. <strong>Inkwell never charges success fees.</strong> You keep 100% of every deal. Our retainer model means we're incentivized to build you a sustainable pipeline, not just close one fast deal.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What stage of startup is Inkwell best suited for?</p>
+        <p class="faq-a">Inkwell works best with healthcare startups that have a validated product or service and are ready to begin (or accelerate) enterprise health system conversations. You don't need to be Series A or later — but you do need a clear value proposition and the operational capacity to deliver if we open doors. <strong>Pre-product startups may benefit more from our Structural Advisory engagement first.</strong></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Why a 90-day minimum commitment?</p>
+        <p class="faq-a">Relationship-driven BD in healthcare doesn't produce results in 30 days. Health systems move deliberately, and trust takes time to build. The 90-day minimum isn't about locking you in — it's about ensuring we have enough runway to produce meaningful results before you evaluate the engagement. <strong>After the 90-day period, you can cancel with 30 days' notice.</strong></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What does "zero AI outreach" actually mean in practice?</p>
+        <p class="faq-a">It means every email, LinkedIn message, phone call, and event interaction we conduct on your behalf is crafted personally by a human who understands your company, your value proposition, and the individual we're reaching out to. No sequences. No automation. No templates spun by AI. <strong>In a market where inboxes are flooded with AI-generated content, bespoke human communication stands out immediately.</strong></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">How do you measure and report on progress?</p>
+        <p class="faq-a">You'll receive monthly reporting covering relationship touchpoints made, pipeline status and progression, introductions facilitated, and strategic recommendations for the next period. We track early-stage relationship indicators — not just meetings booked — because that's the honest picture of where a health system deal actually is. <strong>Transparency is a core principle, including when progress is slower than expected.</strong></p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">Can health systems or investors also work with Inkwell?</p>
+        <p class="faq-a">Yes. While our primary clients are healthcare startups, <strong>health system innovation teams</strong> can engage Inkwell to help source and evaluate startup partnerships, and <strong>healthcare VCs</strong> can engage us for portfolio support — helping their companies navigate health system BD more effectively. Reach out to discuss how we might structure an engagement for your specific needs.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What types of health systems does Inkwell have relationships within?</p>
+        <p class="faq-a">Inkwell's network spans academic medical centers, regional health systems, integrated delivery networks (IDNs), and community hospital systems across the U.S. <strong>During discovery, we'll be honest about where our network is strongest relative to your target accounts</strong> and discuss whether our fit makes sense before you commit to an engagement.</p>
+      </div>
+      <div class="faq-item">
+        <p class="faq-q">What's the difference between the Lead-Generation Plan and the Comprehensive Retainer?</p>
+        <p class="faq-a">The Lead-Generation Plan (12.5 hrs/month) is focused entirely on pipeline generation and relationship development within health systems. The Comprehensive Retainer (40 hrs/month) allows you to direct hours across any Inkwell service — including advisory, pitch deck support, and meeting facilitation. <strong>It's ideal for startups in active deal-pursuit mode who need cross-functional BD support</strong>, and carries a volume discount to ~$212/hr effective rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner">
+  <div class="container">
+    <div class="section-label">Ready to Start</div>
+    <h2>Stop waiting for <em>warm introductions</em><br>that never come.</h2>
+    <p>Book a no-pressure discovery call to explore whether Inkwell is the right fit for your health system partnership goals.</p>
+    <div class="cta-options">
+      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="#pricing" class="btn-ghost">Review Pricing</a>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-layout">
+      <div>
+        <div class="section-label">Get in Touch</div>
+        <h2 class="section-title">Let's explore the fit.</h2>
+        <div class="contact-info">
+          <p>Tell us about your startup and your health system partnership goals. Discovery calls are conversation-first — we'll be candid about whether Inkwell can actually move the needle for you.</p>
+          <div class="contact-details">
+            <div class="contact-detail">
+              <div class="cd-icon">✉</div>
+              <div>
+                <div class="cd-label">Email</div>
+                <div class="cd-value">hello@inkwellpartnerships.com</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">📅</div>
+              <div>
+                <div class="cd-label">Scheduling</div>
+                <div class="cd-value">Book directly via Calendly (link in nav)</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">⏱</div>
+              <div>
+                <div class="cd-label">Response Time</div>
+                <div class="cd-value">Within one business day</div>
+              </div>
+            </div>
+            <div class="contact-detail">
+              <div class="cd-icon">🗓</div>
+              <div>
+                <div class="cd-label">Discovery Call Length</div>
+                <div class="cd-value">30–45 minutes, no pressure</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <form class="contact-form" onsubmit="return false;">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="First name">
+            </div>
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" placeholder="Last name">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label for="company">Company / Organization</label>
+            <input type="text" id="company" placeholder="Your company name">
+          </div>
+          <div class="form-group">
+            <label for="role">Your Role</label>
+            <select id="role">
+              <option value="" disabled selected>Select your role…</option>
+              <option>Founder / CEO</option>
+              <option>VP / Director of Partnerships</option>
+              <option>Healthcare VC / Investor</option>
+              <option>Health System Innovation Leader</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="interest">Primary Interest</label>
+            <select id="interest">
+              <option value="" disabled selected>Select a service…</option>
+              <option>Lead-Generation Plan ($2,800/mo)</option>
+              <option>Comprehensive Retainer ($8,500/mo)</option>
+              <option>Structural Advisory ($4,800 flat)</option>
+              <option>Pitch Deck Creation ($3,000/mo)</option>
+              <option>Meeting Prep & Facilitation ($650/meeting)</option>
+              <option>Not sure yet — exploring options</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Tell us about your goals</label>
+            <textarea id="message" placeholder="Which health systems are you targeting? What stage is your partnership strategy? Any context helps us prepare for the call."></textarea>
+          </div>
+          <button type="submit" class="btn-primary" style="width:100%; text-align:center;">
+            Send Message &amp; Request a Call
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="#" class="footer-logo">Ink<span>well</span></a>
+        <p>Continuous, relationship-driven health system partnership generation for healthcare startups — at a fraction of the cost of a full-time VP of Partnerships.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#pricing">Lead-Generation Plan</a></li>
+          <li><a href="#pricing">Comprehensive Retainer</a></li>
+          <li><a href="#pricing">Structural Advisory</a></li>
+          <li><a href="#pricing">Pitch Deck Creation</a></li>
+          <li><a href="#pricing">Meeting Facilitation</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#about">About Inkwell</a></li>
+          <li><a href="#how">How It Works</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>For</h4>
+        <ul>
+          <li><a href="#contact">Healthcare Startups</a></li>
+          <li><a href="#contact">Healthcare VCs</a></li>
+          <li><a href="#contact">Health Systems</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Inkwell Healthcare Partnerships. All rights reserved.</p>
+      <p class="footer-disclaimer">Inkwell Healthcare Partnerships provides business development consulting services. Results vary based on startup readiness, target health systems, and market conditions. No specific outcomes are guaranteed.</p>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
