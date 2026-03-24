@@ -858,7 +858,7 @@
       <li><a href="#how">How It Works</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#contact" class="nav-cta">Get Started</a></li>
+      <li><a href="#" class="nav-cta calendly-trigger">Get Started</a></li>
     </ul>
   </div>
 </nav>
@@ -872,7 +872,7 @@
       Inkwell embeds your healthcare startup inside the networks that matter — delivering <strong>continuous, relationship-driven pipeline generation</strong> within major health systems at a fraction of what a VP of Partnerships would cost.
     </p>
     <div class="hero-actions">
-      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="#" class="btn-primary calendly-trigger">Book a Discovery Call</a>
       <a href="#pricing" class="btn-secondary">See pricing</a>
     </div>
     <div class="hero-stats">
@@ -1398,7 +1398,7 @@
     <h2>Stop waiting for <em>warm introductions</em><br>that never come.</h2>
     <p>Book a no-pressure discovery call to explore whether Inkwell is the right fit for your health system partnership goals.</p>
     <div class="cta-options">
-      <a href="#contact" class="btn-primary">Book a Discovery Call</a>
+      <a href="#" class="btn-primary calendly-trigger">Book a Discovery Call</a>
       <a href="#pricing" class="btn-ghost">Review Pricing</a>
     </div>
   </div>
@@ -1425,7 +1425,7 @@
               <div class="cd-icon">📅</div>
               <div>
                 <div class="cd-label">Scheduling</div>
-                <div class="cd-value">Book directly via Calendly (link in nav)</div>
+                <div class="cd-value"><a href="#" class="calendly-trigger" style="color: var(--teal); font-weight: 600; text-decoration: none;">Book a time directly →</a></div>
               </div>
             </div>
             <div class="contact-detail">
@@ -1545,6 +1545,16 @@
   </div>
 </footer>
   
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js"></script>
+<script>
+  document.querySelectorAll('.calendly-trigger').forEach(function(el) {
+    el.addEventListener('click', function(e) {
+      e.preventDefault();
+      Calendly.initPopupWidget({url: 'https://calendly.com/inkwell-partnerships/30min'});
+    });
+  });
+</script>
 <script>
   if (window.location.search.includes('thanks=true')) {
     document.getElementById('thanks-banner').style.display = 'block';
